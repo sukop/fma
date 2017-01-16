@@ -10,6 +10,8 @@ xmath_fma(PyObject *self, PyObject *args)
     x = PyFloat_AsDouble(ox);
     y = PyFloat_AsDouble(oy);
     z = PyFloat_AsDouble(oz);
+    if ((x == -1.0 || y == -1.0 || z == -1.0) && PyErr_Occurred())
+        return NULL;
     r = fma(x, y, z);
     return PyFloat_FromDouble(r);
 }
